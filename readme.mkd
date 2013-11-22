@@ -1,0 +1,28 @@
+## template.flask
+
+A simple starting point for [Flask](http://flask.pocoo.org) applications. This
+is a collection of very minor features that I found annoying to repeatedly
+re-implement:
+
+* simple directory structure for app logic, assets, etc.
+* `make` shortcuts for
+	* testing
+	* code coverage
+	* `virtualenv` and dependencies
+	* `pyflakes`
+	* spinning up a development server
+* configurations for `git`, `py.test`, `coverage`, etc.
+* a thread to postpone garbage collection during requests
+
+### Usage
+
+```
+$ make env
+...
+$ source .env/bin/activate
+$ make server
+--------------------------------------------------------------------------------
+ * Running on http://0.0.0.0:8080/
+ * Restarting with reloader
+--------------------------------------------------------------------------------
+```
