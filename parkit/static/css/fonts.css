@@ -1,0 +1,21 @@
+@font-face {
+    /* http://www.google.com/fonts/specimen/Lobster+Two */
+    font-family: 'lobster two';
+    src: url('/fonts/lobstertwo.eot');
+    src: url('/fonts/lobstertwo.eot?#iefix') format('embedded-opentype'),
+         url('/fonts/lobstertwo.woff') format('woff'),
+         url('/fonts/lobstertwo.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    /* Blessed Day http://www.fontspace.com/billy-argel/blessed-day */
+    font-family: 'blessed day';
+    src: url('/fonts/blessed.eot');
+    src: url('/fonts/blessed.eot?#iefix') format('embedded-opentype'),
+         url('/fonts/blessed.woff') format('woff'),
+         url('/fonts/blessed.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}

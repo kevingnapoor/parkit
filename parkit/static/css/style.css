@@ -1,0 +1,30 @@
+body {
+    /*font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;*/
+    font-family: 'geneva', 'arial', sans-serif;
+    font-weight: bold;
+    color: #aaa;
+    line-height: 1.5em;
+    background: #222;
+    margin: 0;
+}
+
+h1 {
+    font-family: 'blessed day';
+    font-size: 10em;
+    font-weight: normal;
+    color: #fff;
+    line-height: 0;
+    text-shadow: 5px 5px #000;
+    margin-bottom: 0.5em
+}
+
+p {
+    font-family: 'lobster two';
+    margin-top: 0;
+    text-shadow: 2px 2px #000;
+    font-weight: bold;
+}
+
+.inner {
+    padding: 20px;
+}

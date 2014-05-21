@@ -1,25 +1,98 @@
-## template.flask
+# [Park It](http://parkuber.herokuapp.com)
 
-A simple starting point for [Flask](http://flask.pocoo.org) applications. This
-is a collection of very minor features that I found annoying to repeatedly
-re-implement:
+A small application for the bike parking [Uber Web Coding Challenge](https://github.com/uber/coding-challenge-tools).
 
-* simple directory structure for app logic, assets, etc.
-* `make` shortcuts for
-	* testing
-	* code coverage
-	* `virtualenv` and dependencies
-	* `pyflakes`
-	* spinning up a development server
-* configurations for `git`, `py.test`, `coverage`, etc.
-* a thread to postpone garbage collection during requests
+### Technical Overview
+
+[Bike parking
+data](https://data.sfgov.org/Transportation/Bicycle-Parking-Public-/w969-5mn4)
+(mostly just coordinates) was thrown into a Mongo database. I expose two
+endpoints: `/index` to render the page and `/search` to perform AJAX search
+requests. Searches return parking spots within 250 meters of the given lat/lng.
+I don't show 'IN PROGRESS' spots to the user since those aren't useful.
+
+You could call this a full-stack solution, in the sense that I spent some time
+on the frontend. I wouldn't call myself a frontend developer, though; I only
+know enough to be dangerous.
+
+I considered implementing this as a static site (with all data loaded
+in-memory) but I didn't want to bother with implementing querying, so I went
+with Mongo as a data store because it's web scale. Just kidding. It has built-in
+geospatial querying and it's easy to setup.
+
+I used a small [starter template](https://github.com/blampe/template.flask) for
+[Flask](http://flask.pocoo.org/) that I made to give me some initial directory
+structure and such. I actually ended up rewriting a bunch of it (to add testing
+with pytest, tox support, flast-assets) so I'm excited to be able to merge that
+upstream. Flask is nice for getting something out the door quickly.
+
+I wanted to demonstrate familiarity with some tools without going *too*
+overboard. Notably I don't use any frontend frameworks like
+[Bootstrap](http://getbootstrap.com/) or [jQuery](jquery.com). By the time I
+added Google Maps support I realized that I had almost all of the vanilla JS I
+needed, and I was able to fake a responsive layout with a few lines of CSS. The
+app is simple enough and already has enough frills that adding these would just
+be bloat and not a good use of time.
+
+[Colander](http://colander.readthedocs.org/en/latest/) is used to validate user
+input on searches.
+
+Never worked with Google Maps before, so that API was new to me. It went OK.
+
+### Areas for Improvement
+
+Some stuff I would work on or do differently if I had more time:
+
+ * The other two problems -- film locations and food trucks -- are similar to
+   this one (show me something nearby). Those data sets were missing lat/long
+   coordinates, though, and I didn't want to deal with geocoding. If I had time
+   to geocode that data it would be really easy to drop it in and display in
+   addition to the bike data.
+ * Javascript is not tested. I hear good things about PhantomJS.
+ * IE is probably not supported at all. This doesn't bother me, but it would
+   need to be addressed eventually.
+ * Rotating the screen on mobile hides the map, which sucks.
+ * Integration with [Travis CI](https://travis-ci.org/).
+ * I wanted to play with [Ming](http://merciless.sourceforge.net/tour.html) for
+   testing Mongo support.
+ * I'm not using argparse or anything in my main app.
+ * I'm not using the [SODA
+   API](http://dev.socrata.com/consumers/getting-started.html) so my data is
+   going to become stale. If I kept stuff in Mongo I would would want a process
+   to periodically sync it.
+ * The frontend could be richer -- details about parking spots like how long
+   it's been around. The usefulness of that is questionable, though.
+ * API errors on `/search` don't have any useful debugging information. I would
+   want to make those return JSON.
+ * Inline comments are a little lacking because I spent more time on this doc.
+   In practice I would want to generate [Sphinx](http://sphinx-doc.org/) docs.
+ * I'm missing a favicon.
+
+### Requirements
+
+Running the application locally requires Mongodb 2.4.x:
+
+    $ brew install mongodb
+
+Python dependencies are handled with virtualenv. You can install these in your
+own environment
+
+    $ pip install -rrequirements.txt
+
+or, if you have tox available, you can use its environment:
+
+    $ make test && source .tox/test/bin/activate
+
+You will need a Google Maps API -- place that in an `api_key` file at the root
+of your repository.
+
+I haven't actually verified that this packaging works, so good luck!
 
 ### Usage
 
 ```
-$ make env
+$ make coverage
 ...
-$ source .env/bin/activate
 $ make server
 --------------------------------------------------------------------------------
  * Running on http://0.0.0.0:8080/

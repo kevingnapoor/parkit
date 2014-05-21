@@ -1,7 +1,10 @@
 *.py[co]
 *.sw[po]
-*.css
+*.egg-info
 .DS_Store
-\.env
 .coverage
-.sass-cache
+.tox
+MANIFEST
+build
+data
+parkit/static/gen

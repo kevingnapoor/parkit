@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en" class="no-js">
+<!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
+
+        <title>Park It</title>
+
+        <script type="text/javascript"
+            src="https://maps.googleapis.com/maps/api/js?key={{ API_KEY }}&sensor=true">
+        </script>
+
+        {% assets "css" %}
+            <link rel=stylesheet type=text/css href="{{ ASSET_URL }}">
+        {% endassets %}
+
+        {% assets "js" %}
+            <script type="text/javascript" src="{{ ASSET_URL }}"></script>
+        {% endassets %}
+    </head>
+
+    <body>
+
+        <div id="container" style="height: 100%">
+            <div class="span1">
+                <div class="inner">
+                    <h1>Park It</h1>
+                    <p>
+                        Drag the red marker around to find nearby bike parking!
+                    </p>
+                </div>
+            </div>
+
+            <div class="span1">
+                <div class="map-container">
+                    <div id="map-canvas"></div>
+                </div>
+            </div>
+
+        </div>
+    </body>
+</html>
+

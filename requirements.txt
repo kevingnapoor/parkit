@@ -1,10 +1,6 @@
-coverage>=3.7
-flask>=0.10.1
-flask-scss>=0.3
-ipdb>=0.8
-ipython>=1.1
-markdown>=2.3.1
-mock>=1.0.1
-pyflakes>=0.7.3
-pytest>=2.4.2
-pyyaml>=3.10
+colander==0.9.9
+flask==0.10.1
+flask-assets==0.9
+pymongo==2.7
+uWSGI==2.0
+yuicompressor==2.4.8
